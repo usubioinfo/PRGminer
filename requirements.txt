@@ -1,0 +1,10 @@
+numpy
+pandas
+keras
+xlrd
+openpyxl
+h5py
+biopython
+scikit-learn
+scipy
+tensorflow 

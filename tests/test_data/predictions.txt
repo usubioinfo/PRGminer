@@ -1,0 +1,12 @@
+Sequence: seq1
+Class: Rgene
+Probabilities:
+  CNL: 0.8000
+  KIN: 0.0500
+  LYK: 0.0300
+  LECRK: 0.0200
+  RLK: 0.0300
+  RLP: 0.0200
+  TIR: 0.0300
+  TNL: 0.0200
+
