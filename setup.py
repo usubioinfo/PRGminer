@@ -35,7 +35,7 @@ URL = "https://bioinfo.usu.edu/PRGminer"
 DOCUMENTATION = "https://bioinfo.usu.edu/PRGminer/docs"
 REPOSITORY = "https://github.com/navduhan/PRGminer"
 LICENSE = "GPL-3.0"
-PYTHON_REQUIRES = ">=3.8,<3.11"
+PYTHON_REQUIRES = ">=3.8"
 
 # Version information
 VERSION = "0.1.0"  # Following semantic versioning
