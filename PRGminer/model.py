@@ -12,7 +12,6 @@ Dependencies:
     - keras
     - numpy
     - pandas
-    - pkg_resources
 """
 
 from keras.models import load_model, Sequential
@@ -21,7 +20,6 @@ import pandas as pd
 import os
 import logging
 pd.options.mode.chained_assignment = None
-import pkg_resources
 from PRGminer import utils
 import tensorflow as tf
 from pathlib import Path
@@ -30,8 +28,8 @@ from .sequence import SequenceProcessor
 from unittest.mock import Mock
 
 # Model paths
-PHASE1_MODEL_PATH = pkg_resources.resource_filename('PRGminer', 'models/prgminer_phase1.h5')
-PHASE2_MODEL_PATH = pkg_resources.resource_filename('PRGminer', 'models/prgminer_phase2.h5')
+PHASE1_MODEL_PATH = str(Path(__file__).parent / 'models' / 'prgminer_phase1.h5')
+PHASE2_MODEL_PATH = str(Path(__file__).parent / 'models' / 'prgminer_phase2.h5')
 
 # Configure logging
 logging.basicConfig(
@@ -288,14 +286,14 @@ class PRGPredictor:
                 # Model outputs are already probabilities
                 non_rgene_prob = float(pred[0][0])
                 rgene_prob = float(pred[0][1])
-                probs = [(100 * non_rgene_prob).round(4), (100 * rgene_prob).round(4)]
+                probs = [non_rgene_prob, rgene_prob]
                 predicted_class = class_names[1] if rgene_prob >= self.threshold else class_names[0]
             else:
                 # Multi-class classification
                 class_names = ['CNL', 'KIN', 'LYK', 'LECRK', 'RLK', 'RLP', 'TIR', 'TNL']
                 # For Phase2, apply softmax
                 pred = tf.nn.softmax(pred, axis=1).numpy()
-                probs = (pred[0] * 100).round(4).tolist()  # Convert to percentages and round
+                probs = [float(p) for p in pred[0]]  # Convert to fractions
                 predicted_class = class_names[np.argmax(pred[0])]
 
             results[seq_id] = {

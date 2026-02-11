@@ -55,6 +55,10 @@ Choose one of the following installation methods:
 git clone https://github.com/navduhan/PRGminer.git
 cd PRGminer
 
+# Initialize Git LFS and pull large model files
+git lfs install
+git lfs pull
+
 # Create and activate conda environment
 conda env create -f environment.yml
 conda activate PRGminer
