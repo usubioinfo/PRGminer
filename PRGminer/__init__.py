@@ -68,6 +68,13 @@ Version: 0.1.0
 License: GPL-3.0
 """
 
+# Suppress pkg_resources deprecation warning emitted by tensorboard at import time.
+# All versions of tensorboard (up to 2.20.0) use pkg_resources internally.
+# This warning is harmless and will be resolved when tensorboard drops pkg_resources.
+import warnings as _warnings
+_warnings.filterwarnings("ignore", message=".*pkg_resources.*", category=UserWarning)
+_warnings.filterwarnings("ignore", message=".*pkg_resources.*", category=DeprecationWarning)
+
 __version__ = "0.1.0"
 __author__ = "Naveen Duhan"
 __email__ = "naveen.duhan@usu.edu"
