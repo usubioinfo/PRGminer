@@ -13,6 +13,10 @@ dependencies:
   - scipy=1.11.0
   - h5py=3.9.0
   - git-lfs
+  # setuptools<81 is required because tensorflow-macos 2.13.0 depends on
+  # tensorboard 2.13.0, which uses pkg_resources (removed in setuptools>=81).
+  # See: https://setuptools.pypa.io/en/latest/pkg_resources.html
+  - setuptools<81
   - pip:
     - tensorflow==2.13.0
     - keras==2.13.1
